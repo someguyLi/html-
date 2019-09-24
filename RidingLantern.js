@@ -31,6 +31,8 @@ Vue.component('ridinglantern', {
     },
     methods: { 
         translatez(n/*边数*/,width){            //计算中心点距离
+            n=parseInt(n);
+            width=parseInt(width);
             let a=width / 2 / Math.tan(360 / n / 2 * 0.017453293);
             return a.toFixed(2);
         }
@@ -44,7 +46,7 @@ Vue.component('ridinglantern', {
         for(let i=0;i<this.num;i++){
             let a=JSON.stringify(this.cla);
             this.cc.push(JSON.parse(a));
-            let translateZ=this.translatez(this.num,160);
+            let translateZ=this.translatez(this.num,this.width);
             let Y=(360/this.num*i);
             this.cc[i].transform="rotateY("+Y+"deg)translateZ("+translateZ+"px)";
             this.cc[i]['imgurl']=this.bgimg[i];
